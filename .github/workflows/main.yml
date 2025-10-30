@@ -12,7 +12,7 @@ jobs:
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_DEFAULT_REGION: us-east-1
     steps:
-      # Clonar el código del repositorio
+      # Clonar el código del repositorio al runner
       - name: Checkout del código
         uses: actions/checkout@v5.0.0
 
