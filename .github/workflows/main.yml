@@ -35,3 +35,11 @@ jobs:
       # Aplicar cambios 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        
+      # Mostrar que el archivo se ha creado
+      - name: Listar archivos generados
+        run: ls -l
+
+      # Mostrar contenido del archivo
+      - name: Ver contenido del fichero
+        run: cat fichero.txt
