@@ -1,0 +1,37 @@
+name: Archivo local
+on:
+  push:
+    branches: [ main ]
+jobs:
+  terraform:
+    name: Ejecutar Terraform
+    runs-on: ubuntu-latest
+    env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        AWS_DEFAULT_REGION: us-east-1
+    steps:
+      # Clonar el código del repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v5.0.0
+
+      # Configurar Terraform (instala la versión más reciente)
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+
+      # Inicializar el directorio de trabajo
+      - name: Terraform Init
+        run: terraform init
+
+      # Validar la sintaxis y configuración
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Crear el plan de ejecución
+      - name: Terraform Plan
+        run: terraform plan
+
+      # Aplicar cambios 
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
