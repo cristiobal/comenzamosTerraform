@@ -1,7 +1,7 @@
 name: Archivo local
 on:
- # push:
- #   branches: [ main ]
+  push:
+    branches: [ main ]
 jobs:
   terraform:
     name: Ejecutar Terraform
